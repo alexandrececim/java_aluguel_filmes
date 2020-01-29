@@ -1,0 +1,18 @@
+Seu nome: Carlos Alexandre de Souza Cecim
+
+1)
+"select id_filme, data_lancamento, nome, descricao from en_filme 
+where data_lancamento=( Select Min(data_lancamento) from en_filme)"
+
+2)
+"select en_cliente.id_cliente, en_cliente.nome, count(en_aluguel.id_cliente)
+ AS alugueis from en_cliente inner join  en_aluguel on( en_cliente.id_cliente 
+ = en_aluguel.id_cliente) Group By en_cliente.id_cliente, en_cliente.nome"	
+
+3)
+"select en_cliente.id_cliente, en_cliente.nome, 
+count(en_aluguel.id_cliente) AS alugueis, 
+sum(en_aluguel.valor) AS total_gasto,
+DATE_PART('YEAR', en_aluguel.data_aluguel) AS ano
+from en_cliente inner join  en_aluguel on( en_cliente.id_cliente = en_aluguel.id_cliente)
+Group By en_cliente.id_cliente, en_cliente.nome, en_aluguel.data_aluguel order by total_gasto desc"
